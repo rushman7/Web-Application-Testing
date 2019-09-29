@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const initial = {
@@ -7,6 +7,12 @@ function App() {
   }
 
   const [count, setCount] = useState(initial);
+
+  useEffect(() => {
+    if (count.strikes === 3 || count.balls === 4) {
+      setCount(initial);
+    }
+  }, [count])
 
   const hit = () => {
     setCount(initial);
