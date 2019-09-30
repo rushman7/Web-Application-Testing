@@ -29,8 +29,6 @@ function App() {
         ball: prev.ball + 1
       }))
     }
-    console.log(count);
-    // console.log(count.strikes);
   }
 
   const hit = () => {
@@ -39,7 +37,10 @@ function App() {
 
   const foul = () => {
     if (count.strike < 2) {
-      setCount(count.strikes++)
+      setCount(prev => ({
+        ...prev,
+        strike: prev.strike + 1
+      }))
     }
   }
 
@@ -49,6 +50,9 @@ function App() {
         <Display count={count}/>
         <Dashboard 
           atBat={atBat}
+          hit={hit}
+          foul={foul}
+          strike={count.strike}
         />
       </header>
     </div>
