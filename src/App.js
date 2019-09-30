@@ -4,22 +4,33 @@ import Display from './components/Display';
 
 function App() {
   const initial = {
-    balls: 0,
-    strikes: 0
+    ball: 0,
+    strike: 0
   }
 
   const [count, setCount] = useState(initial);
 
   useEffect(() => {
-    if (count.strikes === 3 || count.balls === 4) {
+    if (count.strike === 3 || count.ball === 4) {
       setCount(initial);
     }
   }, [count, initial])
 
   const atBat = (e) => {
     let value = e.target.innerText.toLowerCase();
-    setCount(count[value] + 1);
-    console.log(count.strikes);
+    if (value === 'strike') {
+      setCount(prev => ({
+        ...prev,
+        strike: prev.strike + 1
+      }))
+    } else {
+      setCount(prev => ({
+        ...prev,
+        ball: prev.ball + 1
+      }))
+    }
+    console.log(count);
+    // console.log(count.strikes);
   }
 
   const hit = () => {
@@ -27,7 +38,7 @@ function App() {
   }
 
   const foul = () => {
-    if (count.strikes < 2) {
+    if (count.strike < 2) {
       setCount(count.strikes++)
     }
   }

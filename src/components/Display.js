@@ -9,9 +9,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 40,
   },
   paper: {
-    height: 180,
-    width: 130,
-    paddingTop: 50,
+    height: 120,
+    width: 160,
+    paddingTop: 25,
   },
   // control: {
   //   padding: theme.spacing(2),
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Display(props) {
   const classes = useStyles();
-  const { strikes, balls } = props.count;
+  const { strike, ball } = props.count;
 
   return (
     <Grid container className={classes.root} spacing={2}>
@@ -28,18 +28,12 @@ export default function Display(props) {
         <Grid container justify="center" spacing={10}>
           <Grid item>
             <Paper className={classes.paper} >
-              <Typography variant="h5" component="h3">
-                Balls <br />
-                {strikes}
-              </Typography>
+              <h2>Balls: {ball}</h2>
             </Paper>
           </Grid>
           <Grid item>
             <Paper className={classes.paper} >
-              <Typography variant="h5" component="h3">
-                Strikes <br />
-                {balls}
-              </Typography>
+              <h2>Strikes: {strike}</h2>
             </Paper>
           </Grid>
         </Grid>
