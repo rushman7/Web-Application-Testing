@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Dashboard } from './components/Dashboard';
+import Display from './components/Display';
 
 function App() {
   const initial = {
@@ -12,7 +14,13 @@ function App() {
     if (count.strikes === 3 || count.balls === 4) {
       setCount(initial);
     }
-  }, [count])
+  }, [count, initial])
+
+  const atBat = (e) => {
+    let value = e.target.innerText.toLowerCase();
+    setCount(count[value] + 1);
+    console.log(count.strikes);
+  }
 
   const hit = () => {
     setCount(initial);
@@ -27,7 +35,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <span className="greet">Hello World</span>
+        <Display count={count}/>
+        <Dashboard 
+          atBat={atBat}
+        />
       </header>
     </div>
   );
